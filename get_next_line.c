@@ -26,7 +26,7 @@ char	*get_next_line(int fd)
 	{
     	if (check_buff_(buff, BUFFER_SIZE, result_string) == 1)
 		{
-			copy_buff_to_remains(buff, remains);
+			//copy_buff_to_remains(buff, remains);
 			return ("OK");
 		}
 		else

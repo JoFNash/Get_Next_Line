@@ -66,7 +66,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-int check_buf_(char buf[], int size, char *result_string)
+int check_buff_(char buf[], int size, char *result_string)
 {
 	char	*remain;
 
