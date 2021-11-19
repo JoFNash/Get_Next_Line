@@ -1,7 +1,13 @@
 #include "get_next_line.h" 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 int	main(void)
 {
-	printf("%s", get_next_line(1));
+	int	fd;
+
+	fd  = open("test.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
 	return (0);
 }

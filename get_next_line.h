@@ -9,9 +9,9 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
+char	*ft_strchr_modified(const char *s, int c, size_t *place);
 char	*ft_strjoin(char const *s1, char const *s2);
-int		check_buff_(char buf[], int size, char *);
-void	copy_buff_to_remains(char buff[], char *remains);
+int		check_buff_(char buf[], int size, char *, char *remains);
+//void	copy_buff_to_remains(char buff[], char *remains);
 
 #endif

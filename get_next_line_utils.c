@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr_modified(const char *s, int c, size_t *place)
 {
 	size_t	i;
 
@@ -30,7 +30,10 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char)c)
+		{
+			(*place) = (int)i;
 			return ((char *)(&s[i + 1])); // вернула типа указатель на следующий за \n (i + 1)
+		}
 		i++;
 	}
 	if (c == '\0')
@@ -66,14 +69,42 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-int check_buff_(char buf[], int size, char *result_string)
-{
-	char	*remain;
+// buff[BUFFER_SIZE] = "hell'\n'os"
+// size = BUFFER_SIZE
+// result_string = "Wow, 12345 r"
+// remains = 
 
-	if ((remain = ft_strchr(buf, '\n')))
+int check_buff_(char buf[], int size, char *result_string, char *remains)
+{
+	char	*remain; // os
+	char	*end_result_string; // hell
+	size_t	place;
+	size_t	i;
+	size_t	j;
+
+	// если наткнулись на '\n'
+	if ((remain = ft_strchr_modified(buf, '\n', &place))) // os
 	{
-		result_string = ft_strjoin(result_string, remain);
+		remains = ft_strjoin(remains, remain); //os
+		// копирование buf до place в переменную 
+		if (place != 0)
+		{
+			i = 0;
+			j = ft_strlen(result_string);
+			while (i < place)
+			{
+				result_string[j] = remain[i];
+				j++;
+				i++;
+			}
+		}
 		return (1);
+	}
+	// иначе, если НЕ наткнулись на '\n'
+	else
+	{
+		// просто закинули всё что в буффере -> в result_string 
+		result_string = ft_strjoin(result_string, remains);
 	}
 	return (0);
 }

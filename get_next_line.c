@@ -12,7 +12,7 @@
 
 #include "get_next_line.h" 
 
-//
+// comment
 
 char	*get_next_line(int fd)
 {
@@ -24,17 +24,12 @@ char	*get_next_line(int fd)
 		return (NULL);
 	while (read(fd, buff, BUFFER_SIZE) > 0)
 	{
-    	if (check_buff_(buff, BUFFER_SIZE, result_string) == 1)
-		{
-			//copy_buff_to_remains(buff, remains);
-			return ("OK");
-		}
-		else
+    	if (!(check_buff_(buff, BUFFER_SIZE, result_string, remains) == 1))
 		{
 			if (!(result_string = ft_strjoin(result_string, buff)))
 				return (NULL);
 		}
 	}
-	result_string = NULL;
+	//result_string = NULL;
 	return (result_string);
 }
