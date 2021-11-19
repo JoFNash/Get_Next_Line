@@ -69,42 +69,81 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
+char	*ft_strdup(const char *s)
+{
+	char	*copy;
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(s);
+	copy = (char *)malloc(sizeof(char) * (len + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		copy[i] = s[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
+}
+
+char	*get_lost(char *result_string, char buff[], int place)
+{
+	size_t	i;
+	size_t	j;
+
+	printf("1.I am in get_los()\n");
+	printf("1.buff = %s\n", buff);
+	printf("1.result_string = %s\n", result_string);
+
+	i = 0;
+	j = ft_strlen(result_string);
+	while (i < place)
+	{
+		result_string[j] = buff[i];
+		j++;
+		i++;
+	}
+	printf("2.buff = %s\n", buff);
+	printf("2.result_string = %s\n", result_string);
+	return (result_string);
+}
+
 // buff[BUFFER_SIZE] = "hell'\n'os"
 // size = BUFFER_SIZE
 // result_string = "Wow, 12345 r"
 // remains = 
 
-int check_buff_(char buf[], int size, char *result_string, char *remains)
-{
-	char	*remain; // os
-	char	*end_result_string; // hell
-	size_t	place;
-	size_t	i;
-	size_t	j;
+// int check_buff_(char buf[], int size, char *result_string, char *remains)
+// {
+// 	char	*remain;
+// 	char	*end_result_string;
+// 	size_t	place;
+// 	size_t	i;
+// 	size_t	j;
 
-	// если наткнулись на '\n'
-	if ((remain = ft_strchr_modified(buf, '\n', &place))) // os
-	{
-		remains = ft_strjoin(remains, remain); //os
-		// копирование buf до place в переменную 
-		if (place != 0)
-		{
-			i = 0;
-			j = ft_strlen(result_string);
-			while (i < place)
-			{
-				result_string[j] = remain[i];
-				j++;
-				i++;
-			}
-		}
-		return (1);
-	}
-	// иначе, если НЕ наткнулись на '\n'
-	else
-	{
-		// просто закинули всё что в буффере -> в result_string 
-		result_string = ft_strjoin(result_string, remains);
-	}
-	return (0);
-}
+// 	if ((remain = ft_strchr_modified(buf, '\n', &place)))
+// 	{
+// 		remains = ft_strjoin(remains, remain);
+// 		if (place != 0)
+// 		{
+// 			i = 0;
+// 			j = ft_strlen(result_string);
+// 			while (i < place)
+// 			{
+// 				result_string[j] = remain[i];
+// 				j++;
+// 				i++;
+// 			}
+// 			result_string[j] = '\0';
+// 		}
+// 		return (1);
+// 	}
+// 	return (0);
+// }
+
+
+
+
