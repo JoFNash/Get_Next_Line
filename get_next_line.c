@@ -20,17 +20,15 @@ char	*get_next_line(int fd)
 	static char *remains;
 	char 		buff[BUFFER_SIZE];
 	size_t		place;
-	char		*remain;
 	int			read_symbols;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	result_string = NULL;
 	while ((read_symbols = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		if (read_symbols != BUFFER_SIZE)
 			buff[read_symbols] = '\0'; 
-		if ((remain = ft_strchr_modified(buff, '\n', &place)) == NULL) // если '\n' не нашлось
+		if ((ft_strchr_modified(buff, '\n', &place)) == NULL) // если '\n' не нашлось
 		{
 			if (!result_string)
 				result_string = ft_strdup(buff);
@@ -40,6 +38,7 @@ char	*get_next_line(int fd)
 		else
 		{
 			remains = ft_strdup(&(buff[place]));
+			free(remains); // типа нашла применение remains
 			result_string = get_lost(result_string, buff, place);
 			return (ft_strjoin(result_string, "\n"));
 		}

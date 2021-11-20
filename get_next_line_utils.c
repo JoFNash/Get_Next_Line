@@ -89,14 +89,10 @@ char	*ft_strdup(const char *s)
 	return (copy);
 }
 
-char	*get_lost(char *result_string, char buff[], int place)
+char	*get_lost(char *result_string, char buff[], size_t place)
 {
 	size_t	i;
 	size_t	j;
-
-	printf("1.I am in get_los()\n");
-	printf("1.buff = %s\n", buff);
-	printf("1.result_string = %s\n", result_string);
 
 	i = 0;
 	j = ft_strlen(result_string);
@@ -107,8 +103,6 @@ char	*get_lost(char *result_string, char buff[], int place)
 		i++;
 	}
 	//result_string[j] = '\n';
-	printf("2.buff = %s\n", buff);
-	printf("2.result_string = %s\n", result_string);
 	return (result_string);
 }
 
