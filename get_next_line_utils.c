@@ -106,6 +106,7 @@ char	*get_lost(char *result_string, char buff[], int place)
 		j++;
 		i++;
 	}
+	result_string[j] = '\n';
 	printf("2.buff = %s\n", buff);
 	printf("2.result_string = %s\n", result_string);
 	return (result_string);

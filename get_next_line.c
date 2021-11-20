@@ -21,13 +21,15 @@ char	*get_next_line(int fd)
 	char 		buff[BUFFER_SIZE];
 	size_t		place;
 	char		*remain;
+	int			read_symbols;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	result_string = NULL;
-	while (read(fd, buff, BUFFER_SIZE) > 0)
+	while ((read_symbols = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
-		if ((remain = ft_strchr_modified(buff, '\n', &place)) == NULL) // если '\n' не нашлось
+		printf("%d\n", read_symbols);
+		if ((remain = ft_strchr_modified(buff, '\n', &place)) == NULL && read_symbols == BUFFER_SIZE) // если '\n' не нашлось
 		{
 			if (!result_string)
 				result_string = ft_strdup(buff);
@@ -36,7 +38,9 @@ char	*get_next_line(int fd)
 		}
 		else
 		{
+			printf("I am here\n"); // на следующей строке segfault за счет перехода на следующий символ (хотя конец файла)
 			remains = ft_strdup(&(buff[place]));
+			printf("%s\n", remains);
 			result_string = get_lost(result_string, buff, place);
 			return (result_string);
 		}
