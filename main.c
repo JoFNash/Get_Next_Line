@@ -8,7 +8,7 @@ int	main(void)
 	int	fd;
 	int fd1;
 
-	fd  = open("test.txt", O_RDONLY);
+	fd = open("test.txt", O_RDONLY);
 
 	printf("RESULT = %s\n", get_next_line(fd));
 
