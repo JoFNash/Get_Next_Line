@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:16:43 by hsybassi          #+#    #+#             */
-/*   Updated: 2021/11/22 21:12:06 by hsybassi         ###   ########.fr       */
+/*   Updated: 2021/11/22 22:22:53 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ char	*get_remains(char *remains, size_t place)
 	size_t	j;
 	char	*new_remain;
 	
+	new_remain = (char *)malloc(sizeof(char) * (ft_strlen(remains) - place + 1));
+	if (!new_remain)
+		return (NULL);
 	i = place;
 	j = 0;
 	while (remains[i] != '\0')
@@ -108,29 +111,15 @@ char	*get_remains(char *remains, size_t place)
 	return (new_remain);
 }
 
-// char	*get_lost(char *result_string, char buff[], size_t place)
-// {
-// 	size_t	i;
-// 	size_t	j;
-
-// 	i = 0;
-// 	j = ft_strlen(result_string);
-// 	while (i < place)
-// 	{
-// 		result_string[j] = buff[i];
-// 		j++;
-// 		i++;
-// 	}
-// 	//result_string[j] = '\n';
-// 	return (result_string);
-// }
-
 char	*get_result(char *remains, size_t place)
 {
 	char	*result_string;
 	size_t	i;
 
 	i = 0;
+	result_string = (char *)malloc(sizeof(char) * (place + 1));
+	if (!result_string)
+		return (NULL);
 	while (i < place)
 	{
 		result_string[i] = remains[i];
