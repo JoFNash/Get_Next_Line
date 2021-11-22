@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:16:43 by hsybassi          #+#    #+#             */
-/*   Updated: 2021/11/18 21:38:27 by hsybassi         ###   ########.fr       */
+/*   Updated: 2021/11/22 21:12:06 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@ char	*ft_strchr_modified(const char *s, int c, size_t *place)
 	size_t	i;
 
 	i = 0;
+	//printf("s = %s\n", s);
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char)c)
 		{
-			(*place) = (int)i;
-			return ((char *)(&s[i + 1])); // вернула типа указатель на следующий за \n (i + 1)
+			//printf("lll90");
+			(*place) = i;
+			//printf("place == %ld\n", *place);
+			return ((char *)(&s[i])); // вернула типа указатель на 
 		}
 		i++;
 	}
@@ -89,22 +92,54 @@ char	*ft_strdup(const char *s)
 	return (copy);
 }
 
-char	*get_lost(char *result_string, char buff[], size_t place)
+char	*get_remains(char *remains, size_t place)
 {
 	size_t	i;
 	size_t	j;
-
-	i = 0;
-	j = ft_strlen(result_string);
-	while (i < place)
+	char	*new_remain;
+	
+	i = place;
+	j = 0;
+	while (remains[i] != '\0')
 	{
-		result_string[j] = buff[i];
-		j++;
+		new_remain[j] = remains[i];
 		i++;
 	}
-	//result_string[j] = '\n';
+	return (new_remain);
+}
+
+// char	*get_lost(char *result_string, char buff[], size_t place)
+// {
+// 	size_t	i;
+// 	size_t	j;
+
+// 	i = 0;
+// 	j = ft_strlen(result_string);
+// 	while (i < place)
+// 	{
+// 		result_string[j] = buff[i];
+// 		j++;
+// 		i++;
+// 	}
+// 	//result_string[j] = '\n';
+// 	return (result_string);
+// }
+
+char	*get_result(char *remains, size_t place)
+{
+	char	*result_string;
+	size_t	i;
+
+	i = 0;
+	while (i < place)
+	{
+		result_string[i] = remains[i];
+		i++;
+	}
+	result_string[i] = '\n';
 	return (result_string);
 }
+
 
 // buff[BUFFER_SIZE] = "hell'\n'os"
 // size = BUFFER_SIZE

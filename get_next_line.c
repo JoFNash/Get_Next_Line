@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 20:22:07 by hsybassi          #+#    #+#             */
-/*   Updated: 2021/11/21 18:01:30 by hsybassi         ###   ########.fr       */
+/*   Updated: 2021/11/22 21:13:34 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,27 @@ char	*get_next_line(int fd)
 	int			read_symbols;
 
 	result_string = NULL;
-	read_symbols = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	read_symbols = 1;
 	while (read_symbols > 0)
 	{
 		read_symbols = read(fd, buff, BUFFER_SIZE);
-		if (read_symbols <= 0)
+		if (read_symbols < 0)
 			return (NULL);
-		buff[read_symbols] = '\0'; 
-		if ((ft_strchr_modified(buff, '\n', &place)) == NULL) // если '\n' не нашлось
-		{
-			if (!result_string)
-				result_string = ft_strdup(buff);
-			else
-				result_string = ft_strjoin(result_string, buff);
-		}
+		buff[read_symbols] = '\0';
+		if (!remains)
+			remains = ft_strdup(buff);
 		else
+			remains = ft_strjoin(remains, buff);
+
+		if ((ft_strchr_modified(remains, '\n', &place)) != NULL)
 		{
-			remains = ft_strdup(&(buff[place]));
-			free(remains); // типа нашла применение remains
-			result_string = get_lost(result_string, buff, place);
-			return (ft_strjoin(result_string, "\n"));
+			result_string = get_result(remains, place);
+			remains = get_remains(remains, place);
 		}
-		
 	}
-	return (ft_strjoin(result_string, "\n"));
+	return (result_string);
 }
 
 
