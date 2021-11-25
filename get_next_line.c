@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 20:22:07 by hsybassi          #+#    #+#             */
-/*   Updated: 2021/11/25 21:06:29 by hsybassi         ###   ########.fr       */
+/*   Updated: 2021/11/25 21:45:05 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,22 @@ char	*get_next_line(int fd)
 		{
 			temp = remains;
 			remains = ft_strjoin(remains, buff);
+			//printf("remains = %s\n", remains);
 			free(temp);
 		}
+			//printf("remains = %s\n", remains);
+			//printf("vresult_string = %s\n", result_string);
+		
 		if ((ft_strchr_modified(remains, '\n', &place)) != NULL || read_symbols == 0) //  если наткнулись на '\n'
 		{
 			//printf("place = %ld\n", place);
 			result_string = get_result(remains, place);
 			remains = get_remains(&remains, place);
+			//printf("\nremains = %s\n", remains);
 			return (result_string);
 		}
 	}
-	
+
 	return (result_string);
 }
 

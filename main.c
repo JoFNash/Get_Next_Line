@@ -12,12 +12,22 @@ int	main(void)
 	char *str = get_next_line(fd);
 
 	printf("RESULT = %s", str);
-	// printf("RESULT = %s", get_next_line(fd));	
-	// printf("RESULT = %s", get_next_line(fd));	
 
-	// printf("RESULT = %s", get_next_line(fd));
-	// printf("RESULT = %s", get_next_line(fd));	
-	// printf("RESULT = %s", get_next_line(fd));
+	str = get_next_line(fd);
+	printf("RESULT = %s", str);
+
+	str = get_next_line(fd);
+	printf("RESULT = %s", str);
+
+	str = get_next_line(fd);
+	//printf("RESULT = %s", str);
+
+	str = get_next_line(fd);
+	//printf("RESULT = %s", str);
+
+	str = get_next_line(fd);
+	//printf("RESULT = %s", str);
+
 	free(str);
 
 	return (0);

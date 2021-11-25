@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:16:43 by hsybassi          #+#    #+#             */
-/*   Updated: 2021/11/25 21:04:32 by hsybassi         ###   ########.fr       */
+/*   Updated: 2021/11/25 21:39:58 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ char	*get_remains(char **remains, size_t place)
 		j++;
 	}
 	free(*remains);
+	new_remain[i] = '\0';
 	return (new_remain);
 }
 
@@ -117,7 +118,7 @@ char	*get_result(char *remains, size_t place)
 	size_t	i;
 
 	i = 0;
-	result_string = (char *)malloc(sizeof(char) * (place + 1));
+	result_string = (char *)malloc(sizeof(char) * (place + 2));
 	if (!result_string)
 		return (NULL);
 	while (i < place)
@@ -126,7 +127,10 @@ char	*get_result(char *remains, size_t place)
 		i++;
 	}
 	if (result_string[0] && place <= ft_strlen(remains) - 1)
+	{
 		result_string[i] = '\n';                       // странно(!)
-		// 0000000
+		i++;
+	}
+	result_string[i] = '\0';
 	return (result_string);
 }
