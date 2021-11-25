@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:16:43 by hsybassi          #+#    #+#             */
-/*   Updated: 2021/11/22 22:22:53 by hsybassi         ###   ########.fr       */
+/*   Updated: 2021/11/25 21:04:32 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,15 @@ char	*ft_strchr_modified(const char *s, int c, size_t *place)
 	size_t	i;
 
 	i = 0;
-	//printf("s = %s\n", s);
+	*place = 0;
 	while (s[i] != '\0')
 	{
+		*place = i;
 		if (s[i] == (char)c)
-		{
-			//printf("lll90");
-			(*place) = i;
-			//printf("place == %ld\n", *place);
-			return ((char *)(&s[i])); // вернула типа указатель на 
-		}
+			return ((char *)(&s[i]));
 		i++;
+		if (s[i] == '\0')
+			*place = i;
 	}
 	if (c == '\0')
 		return ((char *)(&s[i]));
@@ -92,22 +90,24 @@ char	*ft_strdup(const char *s)
 	return (copy);
 }
 
-char	*get_remains(char *remains, size_t place)
+char	*get_remains(char **remains, size_t place)
 {
 	size_t	i;
 	size_t	j;
 	char	*new_remain;
 	
-	new_remain = (char *)malloc(sizeof(char) * (ft_strlen(remains) - place + 1));
+	new_remain = (char *)malloc(sizeof(char) * (ft_strlen(*remains) - place + 1));
 	if (!new_remain)
 		return (NULL);
-	i = place;
+	i = place + 1;
 	j = 0;
-	while (remains[i] != '\0')
+	while ((*remains)[i] != '\0')
 	{
-		new_remain[j] = remains[i];
+		new_remain[j] = (*remains)[i];
 		i++;
+		j++;
 	}
+	free(*remains);
 	return (new_remain);
 }
 
@@ -125,44 +125,8 @@ char	*get_result(char *remains, size_t place)
 		result_string[i] = remains[i];
 		i++;
 	}
-	result_string[i] = '\n';
+	if (result_string[0] && place <= ft_strlen(remains) - 1)
+		result_string[i] = '\n';                       // странно(!)
+		// 0000000
 	return (result_string);
 }
-
-
-// buff[BUFFER_SIZE] = "hell'\n'os"
-// size = BUFFER_SIZE
-// result_string = "Wow, 12345 r"
-// remains = 
-
-// int check_buff_(char buf[], int size, char *result_string, char *remains)
-// {
-// 	char	*remain;
-// 	char	*end_result_string;
-// 	size_t	place;
-// 	size_t	i;
-// 	size_t	j;
-
-// 	if ((remain = ft_strchr_modified(buf, '\n', &place)))
-// 	{
-// 		remains = ft_strjoin(remains, remain);
-// 		if (place != 0)
-// 		{
-// 			i = 0;
-// 			j = ft_strlen(result_string);
-// 			while (i < place)
-// 			{
-// 				result_string[j] = remain[i];
-// 				j++;
-// 				i++;
-// 			}
-// 			result_string[j] = '\0';
-// 		}
-// 		return (1);
-// 	}
-// 	return (0);
-// }
-
-
-
-
