@@ -12,6 +12,10 @@ int	main(void)
 	char *str = get_next_line(fd);
 
 	printf("RESULT = %s", str);
+	// if (strcmp(str, "0123456789012345678901234567890123456789\n") == 0)
+	// 	printf("+");
+	// else
+	// 	printf("-");
 
 	str = get_next_line(fd);
 	printf("RESULT = %s", str);
@@ -19,13 +23,13 @@ int	main(void)
 	str = get_next_line(fd);
 	printf("RESULT = %s", str);
 
-	str = get_next_line(fd);
+	//str = get_next_line(fd);
 	//printf("RESULT = %s", str);
 
-	str = get_next_line(fd);
+	//str = get_next_line(fd);
 	//printf("RESULT = %s", str);
 
-	str = get_next_line(fd);
+	//str = get_next_line(fd);
 	//printf("RESULT = %s", str);
 
 	free(str);

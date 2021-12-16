@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:16:43 by hsybassi          #+#    #+#             */
-/*   Updated: 2021/11/25 21:39:58 by hsybassi         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:15:31 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,16 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr_modified(const char *s, int c, size_t *place)
+char	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
 
 	i = 0;
-	*place = 0;
 	while (s[i] != '\0')
 	{
-		*place = i;
 		if (s[i] == (char)c)
 			return ((char *)(&s[i]));
 		i++;
-		if (s[i] == '\0')
-			*place = i;
 	}
 	if (c == '\0')
 		return ((char *)(&s[i]));
@@ -90,47 +86,74 @@ char	*ft_strdup(const char *s)
 	return (copy);
 }
 
-char	*get_remains(char **remains, size_t place)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*string;
+	size_t	i;
+	size_t	size;
+
+	if (!s)
+		return (NULL);
+	size = ft_strlen(s);
+	if (start > size)
+		len = 0;
+	else if (start + len > size)
+		len = size - start;
+	string = (char *)malloc(sizeof(char) * (len + 1));
+	if (!string)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		string[i] = s[i + start];
+		i++;
+	}
+	string[i] = '\0';
+	return (string);
+}
+
+char	*get_remains(char **remains)
 {
 	size_t	i;
-	size_t	j;
 	char	*new_remain;
-	
-	new_remain = (char *)malloc(sizeof(char) * (ft_strlen(*remains) - place + 1));
+	size_t len;
+
+	len = 0;
+	i = 0;
+	while((*remains)[i] && ((*remains)[i] != '\n' && (*remains)[i] != '\0'))
+	{
+		len++;
+		i++;
+	}
+	new_remain = ft_substr(*remains, len + 1, ft_strlen((*remains)) - len);
 	if (!new_remain)
 		return (NULL);
-	i = place + 1;
-	j = 0;
-	while ((*remains)[i] != '\0')
-	{
-		new_remain[j] = (*remains)[i];
-		i++;
-		j++;
-	}
 	free(*remains);
-	new_remain[i] = '\0';
 	return (new_remain);
 }
 
-char	*get_result(char *remains, size_t place)
+char	*get_result(char *remains)
 {
 	char	*result_string;
 	size_t	i;
+	size_t len;
 
+	len = 0;
 	i = 0;
-	result_string = (char *)malloc(sizeof(char) * (place + 2));
+	while(remains[i] && (remains[i] != '\n' && remains[i] != '\0'))
+	{
+		len++;
+		i++;
+	}
+	result_string = ft_substr(remains, 0, len + 1);
 	if (!result_string)
 		return (NULL);
-	while (i < place)
+	if (ft_strlen(result_string) == 0)
 	{
-		result_string[i] = remains[i];
-		i++;
+		free(result_string);
+		if (remains != NULL)
+			free(remains);
+		return (NULL);
 	}
-	if (result_string[0] && place <= ft_strlen(remains) - 1)
-	{
-		result_string[i] = '\n';                       // странно(!)
-		i++;
-	}
-	result_string[i] = '\0';
 	return (result_string);
 }

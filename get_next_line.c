@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 20:22:07 by hsybassi          #+#    #+#             */
-/*   Updated: 2021/11/25 21:45:05 by hsybassi         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:41:04 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	get_condition_res_str(char *result_string, char buff[])
 
 char	*get_next_line(int fd)
 {
-	char		*result_string;
+	char		*result_string = NULL;
 	static char *remains;
 	char 		buff[BUFFER_SIZE + 1];
-	size_t		place;
+	//size_t		place;
 	char		*temp;
 	int			read_symbols;
 
@@ -45,61 +45,25 @@ char	*get_next_line(int fd)
 			remains = ft_strdup(buff);
 		else
 		{
-			temp = remains;
-			remains = ft_strjoin(remains, buff);
-			//printf("remains = %s\n", remains);
-			free(temp);
+			// temp = remains;
+			// remains = ft_strjoin(remains, buff);
+			// free(temp);
+			temp = ft_strjoin(remains, buff);
+			free(remains);
+			remains = temp;
 		}
-			//printf("remains = %s\n", remains);
-			//printf("vresult_string = %s\n", result_string);
 		
-		if ((ft_strchr_modified(remains, '\n', &place)) != NULL || read_symbols == 0) //  если наткнулись на '\n'
+		if ((ft_strchr(remains, '\n')) != NULL || read_symbols == 0) // если наткнулись на '\n'
 		{
-			//printf("place = %ld\n", place);
-			result_string = get_result(remains, place);
-			remains = get_remains(&remains, place);
-			//printf("\nremains = %s\n", remains);
-			return (result_string);
+			break ;
+			// result_string = get_result(remains); 
+			// remains = get_remains(&remains);
+			// return (result_string);
 		}
 	}
-
+	result_string = get_result(remains); 
+			remains = get_remains(&remains);
 	return (result_string);
 }
 
-
-		// else if (read_symbols == 0)
-		// {
-		// 	//printf("\n1\n");
-		// 	result_string = get_result(remains, place);
-		// 	//printf("result_string = \"%s\"\n", result_string);
-		// 	free(remains);
-		// 	if (result_string)
-		// 		remains = NULL;
-		// 	//printf("remains = \"%s\"\n", remains);
-		// 	return (result_string);
-		// }
-
-
-
-	// if(....)
-	// 	return (NULL);
-	// read_symbols = 1;
-	// while (read_symbols > 0)
-	// {
-	// 	read_symbols = read(fd, buff, BUFFER_SIZE)
-	// 	if (read_symbols < 0)
-	// 		return (NULL);
-	// 	buff[read_symbols] = '\0'
-	// 	if (!remains)
-	// 		remains = ft_strdup(buff);
-	// 	else
-	// 		remains = ft_strjoin(remains, buff);
-	// 	if (ft_strchr(remains, '\n') != NULL)
-	// 	{
-	// 		result = get_result(remains);
-	// 		remains = get_remains(posPtr);
-	// 	}
-	// }
-	// return str;
-
-
+// printf("remains = %s", remains);
