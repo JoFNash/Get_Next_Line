@@ -10,29 +10,32 @@ int	main(void)
 
 	fd = open("test.txt", O_RDONLY);
 	char *str = get_next_line(fd);
-
-	printf("RESULT = %s", str);
-	// if (strcmp(str, "0123456789012345678901234567890123456789\n") == 0)
-	// 	printf("+");
-	// else
-	// 	printf("-");
-
-	str = get_next_line(fd);
-	printf("RESULT = %s", str);
-
-	str = get_next_line(fd);
-	printf("RESULT = %s", str);
-
-	//str = get_next_line(fd);
-	//printf("RESULT = %s", str);
-
-	//str = get_next_line(fd);
-	//printf("RESULT = %s", str);
-
-	//str = get_next_line(fd);
-	//printf("RESULT = %s", str);
-
+	printf("RESULT = '%s'\n", str);
 	free(str);
+
+	// // if (strcmp(str, "0123456789012345678901234567890123456789\n") == 0)
+	// // 	printf("+");
+	// // else
+	// // 	printf("-");
+
+	str = get_next_line(fd);
+	printf("RESULT = '%s'\n", str);
+	free(str);
+
+	str = get_next_line(fd);
+	printf("RESULT = '%s'\n", str);
+	//free(str);
+
+	//str = get_next_line(fd);
+	//printf("RESULT = %s", str);
+
+	//str = get_next_line(fd);
+	//printf("RESULT = %s", str);
+
+	//str = get_next_line(fd);
+	//printf("RESULT = %s", str);
+
+	//free(str);
 
 	return (0);
 }

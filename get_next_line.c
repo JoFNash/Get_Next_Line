@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 20:22:07 by hsybassi          #+#    #+#             */
-/*   Updated: 2021/12/16 21:41:04 by hsybassi         ###   ########.fr       */
+/*   Updated: 2021/12/17 21:42:18 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,11 @@
 
 // все strjoin надо проверить на NULL!
 
-void	get_condition_res_str(char *result_string, char buff[])
-{
-	if (!result_string)
-		result_string = ft_strdup(buff);
-	else
-		result_string = ft_strjoin(result_string, buff);
-}
-
 char	*get_next_line(int fd)
 {
-	char		*result_string = NULL;
+	char		*result_string;
 	static char *remains;
 	char 		buff[BUFFER_SIZE + 1];
-	//size_t		place;
 	char		*temp;
 	int			read_symbols;
 
@@ -45,25 +36,16 @@ char	*get_next_line(int fd)
 			remains = ft_strdup(buff);
 		else
 		{
-			// temp = remains;
-			// remains = ft_strjoin(remains, buff);
-			// free(temp);
 			temp = ft_strjoin(remains, buff);
 			free(remains);
 			remains = temp;
 		}
-		
-		if ((ft_strchr(remains, '\n')) != NULL || read_symbols == 0) // если наткнулись на '\n'
+		if (ft_strchr(remains, '\n')) // если наткнулись на '\n'
 		{
-			break ;
-			// result_string = get_result(remains); 
-			// remains = get_remains(&remains);
-			// return (result_string);
+			break;
 		}
 	}
 	result_string = get_result(remains); 
-			remains = get_remains(&remains);
+	remains = get_remains(&remains);
 	return (result_string);
 }
-
-// printf("remains = %s", remains);

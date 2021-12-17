@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:16:43 by hsybassi          #+#    #+#             */
-/*   Updated: 2021/12/16 21:15:31 by hsybassi         ###   ########.fr       */
+/*   Updated: 2021/12/17 21:41:55 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,16 +116,13 @@ char	*get_remains(char **remains)
 {
 	size_t	i;
 	char	*new_remain;
-	size_t len;
 
-	len = 0;
+	if (!remains || !*remains)
+		return (NULL);
 	i = 0;
-	while((*remains)[i] && ((*remains)[i] != '\n' && (*remains)[i] != '\0'))
-	{
-		len++;
+	while((*remains)[i] && ((*remains)[i] != '\n'))
 		i++;
-	}
-	new_remain = ft_substr(*remains, len + 1, ft_strlen((*remains)) - len);
+	new_remain = ft_substr(*remains, i + 1, ft_strlen((*remains)) - i);
 	if (!new_remain)
 		return (NULL);
 	free(*remains);
@@ -136,24 +133,41 @@ char	*get_result(char *remains)
 {
 	char	*result_string;
 	size_t	i;
-	size_t len;
+	size_t	j;
 
-	len = 0;
+	if (!remains || !*remains)
+		return (NULL);
 	i = 0;
-	while(remains[i] && (remains[i] != '\n' && remains[i] != '\0'))
-	{
-		len++;
+	result_string = NULL;
+	while(remains[i] && remains[i] != '\n')
 		i++;
-	}
-	result_string = ft_substr(remains, 0, len + 1);
-	if (!result_string)
-		return (NULL);
-	if (ft_strlen(result_string) == 0)
+
+	if (i == ft_strlen(remains))
 	{
-		free(result_string);
-		if (remains != NULL)
-			free(remains);
-		return (NULL);
+		//result_string = ft_substr(remains, 0, i);
+		result_string = (char*)malloc(sizeof(char) * (i + 1));
+		j = 0;
+		while (j < i)
+		{
+			result_string[j] = remains[j];
+			j++;
+		}
+		result_string[j] = '\0';
+	}
+	else if (i != 0 && i != ft_strlen(remains))
+	{
+		result_string = (char *)malloc(sizeof(char) * (i + 2));
+		j = 0;
+		while (j < i)
+		{
+			result_string[j] = remains[j];
+			j++;
+		}
+		result_string[j++] = '\n';
+		result_string[j] = '\0';
 	}
 	return (result_string);
 }
+
+
+//printf("remains = %s\n", remains);
