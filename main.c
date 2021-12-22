@@ -24,18 +24,31 @@ int	main(void)
 
 	str = get_next_line(fd);
 	printf("RESULT = '%s'\n", str);
-	//free(str);
+	free(str);
 
-	//str = get_next_line(fd);
-	//printf("RESULT = %s", str);
+	str = get_next_line(fd);
+	printf("RESULT = '%s'\n", str);
+	free(str);
 
-	//str = get_next_line(fd);
-	//printf("RESULT = %s", str);
+	str = get_next_line(fd);
+	printf("RESULT = '%s'\n", str);
+	free(str);
 
-	//str = get_next_line(fd);
-	//printf("RESULT = %s", str);
+	str = get_next_line(fd);
+	printf("RESULT = '%s'\n", str);
+	free(str);
 
-	//free(str);
+	str = get_next_line(fd);
+	printf("RESULT = '%s'\n", str);
+	free(str);
+
+	str = get_next_line(fd);
+	printf("RESULT = '%s'\n", str);
+	free(str);
+
+	str = get_next_line(fd);
+	printf("RESULT = '%s'\n", str);
+	free(str);
 
 	return (0);
 }

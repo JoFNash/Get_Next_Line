@@ -149,32 +149,5 @@ char	*get_result(char *remains)
 	{
 		result_string = ft_substr(remains, 0, i + 1);
 	}
-	// if (i == ft_strlen(remains))
-	// {
-	// 	//result_string = ft_substr(remains, 0, i);
-	// 	result_string = (char*)malloc(sizeof(char) * (i + 1));
-	// 	j = 0;
-	// 	while (j < i)
-	// 	{
-	// 		result_string[j] = remains[j];
-	// 		j++;
-	// 	}
-	// 	result_string[j] = '\0';
-	// }
-	// else if (i != 0 && i != ft_strlen(remains))
-	// {
-	// 	result_string = (char *)malloc(sizeof(char) * (i + 2));
-	// 	j = 0;
-	// 	while (j < i)
-	// 	{
-	// 		result_string[j] = remains[j];
-	// 		j++;
-	// 	}
-	// 	result_string[j++] = '\n';
-	// 	result_string[j] = '\0';
-	// }
 	return (result_string);
 }
-
-
-//printf("remains = %s\n", remains);
