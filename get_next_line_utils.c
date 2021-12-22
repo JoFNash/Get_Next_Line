@@ -133,7 +133,6 @@ char	*get_result(char *remains)
 {
 	char	*result_string;
 	size_t	i;
-	size_t	j;
 
 	if (!remains || !*remains)
 		return (NULL);
@@ -144,28 +143,36 @@ char	*get_result(char *remains)
 
 	if (i == ft_strlen(remains))
 	{
-		//result_string = ft_substr(remains, 0, i);
-		result_string = (char*)malloc(sizeof(char) * (i + 1));
-		j = 0;
-		while (j < i)
-		{
-			result_string[j] = remains[j];
-			j++;
-		}
-		result_string[j] = '\0';
+		result_string = ft_substr(remains, 0, i);
 	}
-	else if (i != 0 && i != ft_strlen(remains))
+	else if (i < ft_strlen(remains))
 	{
-		result_string = (char *)malloc(sizeof(char) * (i + 2));
-		j = 0;
-		while (j < i)
-		{
-			result_string[j] = remains[j];
-			j++;
-		}
-		result_string[j++] = '\n';
-		result_string[j] = '\0';
+		result_string = ft_substr(remains, 0, i + 1);
 	}
+	// if (i == ft_strlen(remains))
+	// {
+	// 	//result_string = ft_substr(remains, 0, i);
+	// 	result_string = (char*)malloc(sizeof(char) * (i + 1));
+	// 	j = 0;
+	// 	while (j < i)
+	// 	{
+	// 		result_string[j] = remains[j];
+	// 		j++;
+	// 	}
+	// 	result_string[j] = '\0';
+	// }
+	// else if (i != 0 && i != ft_strlen(remains))
+	// {
+	// 	result_string = (char *)malloc(sizeof(char) * (i + 2));
+	// 	j = 0;
+	// 	while (j < i)
+	// 	{
+	// 		result_string[j] = remains[j];
+	// 		j++;
+	// 	}
+	// 	result_string[j++] = '\n';
+	// 	result_string[j] = '\0';
+	// }
 	return (result_string);
 }
 

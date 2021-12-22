@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#define BUFFER_SIZE 5
+//#define BUFFER_SIZE 5
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
