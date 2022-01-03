@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:16:43 by hsybassi          #+#    #+#             */
-/*   Updated: 2022/01/03 23:04:21 by hsybassi         ###   ########.fr       */
+/*   Updated: 2022/01/03 23:37:27 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,7 @@ char	*get_remains(char **remains)
 	i = 0;
 	while((*remains)[i] && ((*remains)[i] != '\n'))
 		i++;
-	//printf("REMAINS |%s| REMAINS i+1 |%s|\n", *remains, *(remains)+i+1);
 	new_remain = ft_substr(*remains, i + 1, ft_strlen(*(remains)+i+1));
-	//new_remain = ft_strdup(&(*remains)[i + 1]);
 	if (!new_remain)
 		return (NULL);
 	free(*remains);
@@ -148,12 +146,10 @@ char	*get_result(char *remains)
 
 	if (i == ft_strlen(remains))
 	{
-		//printf("*%c*\n", remains[i]);
 		result_string = ft_strdup(remains);
 	}
 	else if (i < ft_strlen(remains))
 	{
-		//printf("*%c*\n", remains[i]);
 		result_string = ft_substr(remains, 0, i+1);
 	}
 	return (result_string);

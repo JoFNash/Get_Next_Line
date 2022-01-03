@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 20:22:07 by hsybassi          #+#    #+#             */
-/*   Updated: 2022/01/03 23:04:52 by hsybassi         ###   ########.fr       */
+/*   Updated: 2022/01/03 23:37:16 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,6 @@ char	*get_next_line(int fd)
 			break;
 		}
 	}
-	// write(1, "RESULT STRING|", ft_strlen("RESULT STRING|"));
-	// write(1, result_string, ft_strlen(result_string));
-	// write(1, "|\n", 2);
-	// write(1, "REMAINS|", ft_strlen("REMAINS|"));
-	// write(1, remains, ft_strlen(remains));
-	// write(1, "|\n", 2);
-	// write(1, "TEMP|", ft_strlen("TEMP|"));
-	// write(1, temp, ft_strlen(temp));
-	// write(1, "|\n", 2);
 	result_string = get_result(remains);
 	remains = get_remains(&remains);
 	if(result_string== NULL)
@@ -64,6 +55,3 @@ char	*get_next_line(int fd)
 	}
 	return (result_string);
 }
-
-// abvfyugudgw\naaa\0
-// abvfyugudgwaaa\0
