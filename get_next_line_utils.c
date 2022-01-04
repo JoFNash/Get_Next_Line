@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:16:43 by hsybassi          #+#    #+#             */
-/*   Updated: 2022/01/03 23:37:27 by hsybassi         ###   ########.fr       */
+/*   Updated: 2022/01/04 18:55:10 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
-	if(!s)
-		return 0;
 	i = 0;
 	while (s[i] != '\0')
 		i++;
@@ -65,7 +63,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	str[j] = '\0';
-	//free(s1);
 	return (str);
 }
 
@@ -113,44 +110,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	string[i] = '\0';
 	return (string);
-}
-
-char	*get_remains(char **remains)
-{
-	size_t	i;
-	char	*new_remain;
-
-	if (!remains || !*remains)
-		return (NULL);
-	i = 0;
-	while((*remains)[i] && ((*remains)[i] != '\n'))
-		i++;
-	new_remain = ft_substr(*remains, i + 1, ft_strlen(*(remains)+i+1));
-	if (!new_remain)
-		return (NULL);
-	free(*remains);
-	return (new_remain);
-}
-
-char	*get_result(char *remains)
-{
-	char	*result_string;
-	size_t	i;
-
-	if (!remains || !*remains)
-		return (NULL);
-	i = 0;
-	result_string = NULL;
-	while(remains[i] && remains[i] != '\n')
-		i++;
-
-	if (i == ft_strlen(remains))
-	{
-		result_string = ft_strdup(remains);
-	}
-	else if (i < ft_strlen(remains))
-	{
-		result_string = ft_substr(remains, 0, i+1);
-	}
-	return (result_string);
 }

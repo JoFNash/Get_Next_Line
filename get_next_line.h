@@ -1,10 +1,22 @@
-#ifndef GET_NEXT_LINE_H
-#define GET_NEXT_LINE_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/04 19:25:46 by hsybassi          #+#    #+#             */
+/*   Updated: 2022/01/04 19:25:46 by hsybassi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+
+# include <string.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 //#define BUFFER_SIZE 5
 
 char	*get_next_line(int fd);
@@ -15,5 +27,6 @@ char	*ft_strdup(const char *s);
 char	*get_lost(char *result_string, char buff[], size_t place);
 char	*get_result(char *remains);
 char	*get_remains(char **remains);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
