@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 //#define BUFFER_SIZE 5
 
 char	*get_next_line(int fd);
