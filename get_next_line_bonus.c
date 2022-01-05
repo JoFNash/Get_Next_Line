@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 20:14:10 by hsybassi          #+#    #+#             */
-/*   Updated: 2022/01/04 22:01:42 by hsybassi         ###   ########.fr       */
+/*   Updated: 2022/01/05 18:50:13 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ char	*get_next_line(int fd)
 	char		*temp;
 	int			read_symbols;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0
+		|| BUFFER_SIZE > 1000000 || read(fd, 0, 0) < 0)
 		return (NULL);
 	read_symbols = 1;
 	while (read_symbols > 0)
