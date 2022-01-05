@@ -6,10 +6,9 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 20:14:10 by hsybassi          #+#    #+#             */
-/*   Updated: 2022/01/04 21:23:10 by hsybassi         ###   ########.fr       */
+/*   Updated: 2022/01/04 22:01:42 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "get_next_line_bonus.h" 
 
@@ -82,7 +81,7 @@ int	get_temp_and_free_remains(char **temp, char *buff, char **remains)
 
 char	*get_next_line(int fd)
 {
-	static char	*remains[OPEN_FILES];
+	static char	*remains[OPEN_MAX];
 	char		buff[BUFFER_SIZE + 1];
 	char		*temp;
 	int			read_symbols;
@@ -93,12 +92,11 @@ char	*get_next_line(int fd)
 	while (read_symbols > 0)
 	{
 		read_symbols = read(fd, buff, BUFFER_SIZE);
-		if (read_symbols < 0)
-			return (NULL);
 		buff[read_symbols] = '\0';
 		if (!remains[fd])
 		{
-			if (!(remains[fd] = ft_strdup(buff)))
+			remains[fd] = ft_strdup(buff);
+			if (!remains[fd])
 				return (NULL);
 		}
 		else if (get_temp_and_free_remains(&temp, buff, &remains[fd]) == 0)
@@ -108,4 +106,3 @@ char	*get_next_line(int fd)
 	}
 	return (get_res_and_remain(&remains[fd]));
 }
-	

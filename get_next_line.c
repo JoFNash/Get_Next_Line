@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 20:22:07 by hsybassi          #+#    #+#             */
-/*   Updated: 2022/01/04 20:10:59 by hsybassi         ###   ########.fr       */
+/*   Updated: 2022/01/04 21:42:22 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,11 @@ char	*get_next_line(int fd)
 	while (read_symbols > 0)
 	{
 		read_symbols = read(fd, buff, BUFFER_SIZE);
-		if (read_symbols < 0)
-			return (NULL);
 		buff[read_symbols] = '\0';
 		if (!remains)
 		{
-			if (!(remains = ft_strdup(buff)))
+			remains = ft_strdup(buff);
+			if (!remains)
 				return (NULL);
 		}
 		else if (get_temp_and_free_remains(&temp, buff, &remains) == 0)
@@ -107,4 +106,3 @@ char	*get_next_line(int fd)
 	}
 	return (get_res_and_remain(&remains));
 }
-	

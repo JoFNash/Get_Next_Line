@@ -6,7 +6,7 @@
 /*   By: hsybassi <hsybassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 21:14:39 by hsybassi          #+#    #+#             */
-/*   Updated: 2022/01/04 21:23:50 by hsybassi         ###   ########.fr       */
+/*   Updated: 2022/01/04 21:46:24 by hsybassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# define OPEN_FILES 256 
-//#define BUFFER_SIZE 5
+# include <limits.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
+# endif
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
